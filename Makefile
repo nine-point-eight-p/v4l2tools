@@ -109,10 +109,10 @@ libyuv.a: libyuv/CMakeLists.txt
 	mv libyuv/libyuv.a .
 	make -C libyuv clean
 
-v4l2wrapper/Makefile:
+v4l2wrapper/CMakeLists.txt:
 	git submodule update --init v4l2wrapper
 
-libv4l2wrapper.a: v4l2wrapper/Makefile
+libv4l2wrapper.a: v4l2wrapper/CMakeLists.txt
 	cd v4l2wrapper && cmake -DCMAKE_CXX_FLAGS="$(CMAKE_CXX_FLAGS) -Wall -O2 -s" . && make
 	mv v4l2wrapper/libv4l2wrapper.a .
 	make -C v4l2wrapper clean
