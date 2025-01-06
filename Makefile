@@ -1,5 +1,5 @@
 ALL_PROGS = v4l2copy v4l2source_yuv v4l2dump v4l2compress
-CFLAGS = -std=c++11 -W -Wall -pthread -g -pipe $(CFLAGS_EXTRA) -I include
+CFLAGS = -std=c++11 -W -Wall -pthread -pipe $(CFLAGS_EXTRA) -I include -O2 -s
 RM = rm -rf
 CC = $(CROSS)gcc
 CXX = $(CROSS)g++
@@ -113,7 +113,7 @@ v4l2wrapper/Makefile:
 	git submodule update --init v4l2wrapper
 
 libv4l2wrapper.a: v4l2wrapper/Makefile
-	cd v4l2wrapper && cmake . && make
+	cd v4l2wrapper && cmake -DCMAKE_CXX_FLAGS="$(CMAKE_CXX_FLAGS) -Wall -O2 -s" . && make
 	mv v4l2wrapper/libv4l2wrapper.a .
 	make -C v4l2wrapper clean
 
